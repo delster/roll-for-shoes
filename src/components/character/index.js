@@ -1,25 +1,28 @@
-// Gatsby supports TypeScript natively!
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import { PageProps, Link } from 'gatsby'
 
-import Layout from '@components/layout'
-import SEO from '@components/seo'
+const dummyCharacter = {
+  name: 'Blahblah Hoggins',
+  description: 'Yes, he is _that_ Blahblah.',
+  skills: ['skill 1', 'skill 2', 'skill 3']
+}
 
-export default () => (
-  <Layout>
-    <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2 ({props.path})</p>
-    <Link to="/">Go back to the homepage</Link>
-    <Flex>
-      <p>hi</p>
-    </Flex>
-  </Layout>
+export default ({ char }) => (
+  <Character>
+    <Name>{char.name}</Name>
+    <Description>{char.description}</Description>
+    <Skills>
+      {char.skills.map(skill=><Skill key={skill} skill={skill} />)}
+    </Skills>
+  </Character>
 )
 
-const Flex = styled.div`
+const Character = styled.div`
   ${tw`mx-auto py-10 text-center`};
   background: red;
 `
+const Name = styled.span``
+const Description = styled.p``
+const Skills = styled.ul``
+const Skill = styled.span`` /* TODO: import from folder */
