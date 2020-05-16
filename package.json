@@ -1,25 +1,35 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "roll-for-shoes",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A toolkit for running Roll For Shoes online.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "David Elster <davidandtheweb@gmail.com> (@delsterdev)",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.21.22",
     "gatsby-image": "^2.4.3",
     "gatsby-plugin-manifest": "^2.4.2",
     "gatsby-plugin-offline": "^3.2.1",
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-sharp": "^2.6.2",
+    "gatsby-plugin-styled-components": "^3.3.1",
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-transformer-sharp": "^2.5.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "react-is": "^16.8.0",
+    "styled-components": "^5.1.0",
+    "typeface-montserrat": "^0.0.75"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "@babel/core": "^7.9.6",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-preset-gatsby": "^0.4.2",
+    "prettier": "2.0.5",
+    "tailwind.macro": "^1.0.0-alpha.10",
+    "tailwindcss": "^1.4.6"
   },
   "keywords": [
     "gatsby"
