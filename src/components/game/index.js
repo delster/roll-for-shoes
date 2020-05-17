@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
+import tw from 'twin.macro'
 import { FaCheck, FaPencilAlt, FaTimes } from 'react-icons/fa'
 import CharacterSheet from '../character'
 
@@ -32,9 +32,7 @@ export default () => {
   )
 }
 
-const Game = styled.div`
-  ${tw`m-8 p-4 font-mono bg-gray-100 shadow-md`}
-`
+const Game = tw.div`m-8 p-4 font-mono bg-gray-100 shadow-md container mx-auto`
 const GameTitle = styled.h2`
   & svg {
     ${tw`inline-block ml-2`}

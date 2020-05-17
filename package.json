@@ -1,9 +1,10 @@
 {
   "name": "roll-for-shoes",
-  "private": true,
   "description": "A toolkit for running Roll For Shoes online.",
   "version": "0.1.0",
+  "license": "MIT",
   "author": "David Elster <davidandtheweb@gmail.com> (@delsterdev)",
+  "private": true,
   "dependencies": {
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
@@ -26,6 +27,7 @@
     "react-icons": "^3.10.0",
     "react-is": "^16.8.0",
     "styled-components": "^5.1.0",
+    "twin.macro": "^1.0.0",
     "typeface-montserrat": "^0.0.75"
   },
   "devDependencies": {
@@ -33,13 +35,16 @@
     "babel-plugin-macros": "^2.8.0",
     "babel-preset-gatsby": "^0.4.2",
     "prettier": "2.0.5",
-    "tailwind.macro": "^1.0.0-alpha.10",
     "tailwindcss": "^1.4.6"
+  },
+  "babelMacros": {
+    "twin": {
+      "styled": "styled-components"
+    }
   },
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
