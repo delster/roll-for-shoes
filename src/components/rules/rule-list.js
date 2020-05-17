@@ -1,2 +1,3 @@
 import styled from 'styled-components'
-export default styled.ol``
+import tw from 'tailwind.macro'
+export default styled.ol`${tw`list-decimal pl-5`}`
