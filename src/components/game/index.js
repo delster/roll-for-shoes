@@ -5,7 +5,6 @@ import { FaCheck, FaPencilAlt } from 'react-icons/fa'
 import CharacterSheet from '../character'
 
 export default () => {
-  const [id, setId] = useState(1)
   const [title, setTitle] = useState('')
   const [characters, setCharacters] = useState([])
   const [isEditingTitle, setIsEditingTitle] = useState(false)
@@ -16,7 +15,7 @@ export default () => {
   return (
     <Game>
       <GameTitle>
-        Game #{id}: {isEditingTitle || title}
+        Game: {isEditingTitle || title}
         {isEditingTitle && (
           <TitleInput value={title} onChange={handleTitleEdit} />
         )}
