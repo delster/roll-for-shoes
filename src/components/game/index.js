@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import tw from 'twin.macro'
-import { FaCheck, FaPencilAlt, FaTimes } from 'react-icons/fa'
+import { FaCheck, FaPencilAlt } from 'react-icons/fa'
 import CharacterSheet from '../character'
 
 export default () => {
