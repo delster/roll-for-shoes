@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import tw from 'twin.macro'
 import { FaCheck, FaPencilAlt } from 'react-icons/fa'
 import CharacterSheet from '../character'
+import Card from '@layout/card'
+import CardHeading from '@layout/cardheading'
 
 export default () => {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('_____')
   const [characters, setCharacters] = useState([])
   const [isEditingTitle, setIsEditingTitle] = useState(false)
 
@@ -14,14 +16,15 @@ export default () => {
 
   return (
     <Game>
-      <GameTitle>
-        Game: {isEditingTitle || title}
+      <CardHeading>
+        Characters of {isEditingTitle || title}
         {isEditingTitle && (
           <TitleInput value={title} onChange={handleTitleEdit} />
         )}
         <TitleToggle val={isEditingTitle} onToggle={toggleEditMode} />
-      </GameTitle>
-
+      </CardHeading>
+      <Card>
+      </Card>
       <CharList>
         {characters.map(c => (
           <CharacterSheet key={c.name} char={c} />
@@ -31,13 +34,9 @@ export default () => {
   )
 }
 
-const Game = tw.div`m-8 p-4 font-mono bg-gray-100 shadow-md container mx-auto`
-const GameTitle = styled.h2`
-  & svg {
-    ${tw`inline-block ml-2`}
-  }`
+const Game = tw.div`my-8 container mx-auto`
 const CharList = styled.ul``
-const TitleInput = styled.input``
+const TitleInput = tw.input`ml-2`
 
 const TitleToggle = ({ val, onToggle }) =>
-  val ? <FaCheck onClick={onToggle} /> : <FaPencilAlt onClick={onToggle} />
+  val ? <FaCheck tw='ml-2' onClick={onToggle} /> : <FaPencilAlt tw='ml-2' onClick={onToggle} />

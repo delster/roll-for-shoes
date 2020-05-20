@@ -9,6 +9,6 @@ export default ({ siteTitle }) => (
   </Header>
 )
 
-const Header = tw.header`bg-teal-700 py-4`
+const Header = tw.header`bg-teal-700 py-4 shadow-md`
 const HLeft = tw.div`container mx-auto`
 const Title = tw.h1`text-teal-100 text-lg tracking-wider uppercase`

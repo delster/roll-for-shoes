@@ -20,7 +20,7 @@ export default () => (
   </Footer>
 )
 
-const ThankYou = tw.p`inline-block`
-const Footer = tw.footer`container mx-auto p-3 text-center`
-const SocialLink = tw.a`inline-flex items-center ml-4 px-3 py-1 rounded-md text-sm text-gray-700 bg-gray-400 shadow-md`
+const ThankYou = tw.p`inline-block text-sm`
+const Footer = tw.footer`flex container items-center justify-center mx-auto p-3`
+const SocialLink = tw.a`inline-flex items-center ml-4 px-3 py-1 rounded-md font-semibold text-sm text-gray-700 bg-gray-400 shadow-md`
 const SocialLabel = tw.span`ml-1`

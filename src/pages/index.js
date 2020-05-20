@@ -8,11 +8,17 @@ import SEO from '@utils/seo'
 export default () => (
   <Layout>
     <SEO title="Roll for Shoes" />
-    <RulesSection>
-      <Rules />
-    </RulesSection>
-    <Game />
+    <PageWrap>
+      <RulesWrap>
+        <Rules />
+      </RulesWrap>
+      <GameWrap>
+        <Game />
+      </GameWrap>
+    </PageWrap>
   </Layout>
 )
 
-const RulesSection = tw.div`container mx-auto`
+const PageWrap = tw.div`container mx-auto flex-row justify-between`
+const RulesWrap = tw.aside`my-8`
+const GameWrap = tw.main`my-8`
