@@ -6,9 +6,9 @@ export default ({ char }) => {
   const [name, setName] = useState(char.name ?? '')
   const [description, setDescription] = useState(char.description ?? '')
   const [skills, setSkills] = useState(char.skills ?? [])
-  const handleNameChange = val => setName(val)
-  const handleDescriptionChange = val => setDescription(val)
-  const handleSkillsChange = val => setSkills(val)
+  // const handleNameChange = val => setName(val)
+  // const handleDescriptionChange = val => setDescription(val)
+  // const handleSkillsChange = val => setSkills(val)
 
   return (
     <Character>

@@ -27,8 +27,11 @@
     "react-icons": "^3.10.0",
     "react-is": "^16.8.0",
     "styled-components": "^5.1.0",
-    "twin.macro": "^1.0.0",
-    "typeface-montserrat": "^0.0.75"
+    "twin.macro": "^1.1.0",
+    "typeface-eczar": "^0.0.72",
+    "typeface-montserrat": "^0.0.75",
+    "typeface-roboto-mono": "^0.0.75",
+    "use-persisted-state": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

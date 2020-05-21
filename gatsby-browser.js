@@ -1,4 +1,6 @@
 import 'typeface-montserrat'
+import 'typeface-roboto-mono'
+import 'typeface-eczar'
 import 'tailwindcss/dist/base.css'
 import 'tailwindcss/dist/components.css'
 import 'tailwindcss/dist/utilities.css'

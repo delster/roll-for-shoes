@@ -25,5 +25,5 @@ export default ({ children }) => {
   )
 }
 
-const PageWrap = tw.div`flex flex-col h-screen bg-gray-200`
+const PageWrap = tw.div`flex flex-col h-full min-h-screen bg-gray-200`
 const Main = styled.main`flex: 1 1 100%`
