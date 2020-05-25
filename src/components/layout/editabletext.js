@@ -2,99 +2,85 @@ import React, { useReducer, useState, useEffect } from 'react'
 import tw from 'twin.macro'
 import { FaCheck, FaPencilAlt, FaTimes } from 'react-icons/fa'
 
+/* "States" for our FSM. */
 const EditableTextModes = Object.freeze({
   Edit: 'EDIT',
   View: 'VIEW',
-  Success: 'SUCCESS'
+  Saving: 'SAVING'
 })
+/* Actions that can be dispatched to declaratively transition between states. */
 const EditableTextActions = Object.freeze({
   Cancel: 'CANCEL',
   Change: 'CHANGE',
   Save: 'SAVE',
   Start: 'START'
 })
-
-const EditableReducer = (state, { action, payload = {} }) => {
-  console.log(
-    `mode: ${state.mode}, text: ${
-      state.text
-    }, action: ${action}, payload: ${JSON.stringify(payload)}`
-  )
-
-  if (state.mode === EditableTextModes.Edit) {
-    if (action === EditableTextActions.Change) {
-      console.log(action)
-      return { ...state, text: payload }
-    }
-    if (action === EditableTextActions.Save)
-      return { ...state, mode: EditableTextModes.Success }
-    if (action === EditableTextActions.Cancel)
-      return { ...state, mode: EditableTextModes.View }
+/* State transitions described as [startState][action]:[endState] */
+const EditableTextTransitions = Object.freeze({
+  EDIT: {
+    CANCEL: EditableTextModes.View,
+    SAVE: EditableTextModes.Saving
+  },
+  VIEW: {
+    START: EditableTextModes.Edit
+  },
+  SAVING: {
+    SAVE: EditableTextModes.View
   }
-
-  if (state.mode === EditableTextModes.View)
-    if (action === EditableTextActions.Start)
-      return { ...state, mode: EditableTextModes.Edit }
-
-  if (state.mode === EditableTextModes.Success)
-    if (action === EditableTextActions.Save)
-      return { ...state, mode: EditableTextModes.View }
-
-  return { ...state, mode: EditableTextModes.View }
+})
+/* The reducer / brain of the thing */
+const EditableReducer = (state, { action, text = '' }) => {
+  const { mode } = state
+  const transitionResult = (EditableTextTransitions[mode] || {})[action] || mode
+  // Only relevant for { mode: saving, action: save }
+  const newText = text ? text : state.text
+  return { ...state, mode: transitionResult, text: newText }
 }
 
-export default props => {
-  const { onSave } = props
-  const initialState = {
-    mode: EditableTextModes.View,
-    text: ''
-  }
+export default () => {
+  const initialState = { mode: EditableTextModes.View, text: '' }
   const [state, stateTo] = useReducer(EditableReducer, initialState)
-  const handleEditing = e => {
-    console.log(e.currentTarget.value)
-    state.text = e.currentTarget.value
-  }
-
-  const handleSuccess = () => {
-    if (onSave) onSave(state.text)
-    stateTo(EditableTextActions.Save)
-  }
-
   return (
     <>
       {state.mode === EditableTextModes.Edit && (
         <Input
           value={state.text}
-          onChange={e=>stateTo({ action: EditableTextActions.Change, payload: e.currentTarget.value})}
+          onChange={e =>
+            stateTo({
+              action: EditableTextActions.Change,
+              text: e.currentTarget.value
+            })
+          }
         />
       )}
       {state.mode === EditableTextModes.View && state.text}
-      {state.mode === EditableTextModes.Success && (
-        <Success onClear={handleSuccess} />
-      )}
+      {state.mode === EditableTextModes.Saving && <Saving dispatch={stateTo} />}
       <Toggle mode={state.mode} dispatch={stateTo} />
     </>
   )
 }
 
-const Success = props => {
-  const { onClear } = props
-  const [seconds, setSeconds] = useState(5)
+const Saving = props => {
+  const { dispatch } = props
+  const [seconds, setSeconds] = useState(1)
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      setSeconds(seconds => seconds - 1)
+    const timer = setInterval(() => {
+      if (seconds > 0) setSeconds(seconds - 1)
+
+      if (seconds <= 0) {
+        clearInterval(timer)
+        dispatch({ action: EditableTextActions.Save })
+      }
     }, 1000)
 
-    return () => {
-      clearInterval(timer)
-      onClear()
-    }
-  }, [seconds])
+    return () => clearInterval(timer)
+  }, [dispatch, seconds])
 
-  return <span>Saving...</span>
+  return <span>..saving...</span>
 }
 
+/* Toggles between Pencil icon and Check/Close Icons */
 const Toggle = props =>
   props.mode === EditableTextModes.Edit ? (
     <>
