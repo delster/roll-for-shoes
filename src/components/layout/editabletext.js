@@ -2,6 +2,15 @@ import React, { useReducer, useState, useEffect } from 'react'
 import tw from 'twin.macro'
 import { FaCheck, FaPencilAlt, FaTimes } from 'react-icons/fa'
 
+/*
+ * Okay, I gave up on this but it's almost done so I'm leaving a note for future me:
+ * Dude, all you have to do is..
+ *   Edit->Change->Edit needs to use the input's value as a buffer
+ *   Edit->Save->Saving needs to push the buffer to the state.text
+ *   Edit->Cancel->View needs to clear the buffer
+ *   ..then check for polish/QA things like Saving -> View should also flush buffer.
+ */
+
 /* "States" for our FSM. */
 const EditableTextModes = Object.freeze({
   Edit: 'EDIT',
