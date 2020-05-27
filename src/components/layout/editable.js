@@ -46,11 +46,11 @@ const EditableReducer = (state, { action, text = '' }) => {
   return { ...state, mode: transitionResult, text: newText }
 }
 
-export default () => {
-  const initialState = { mode: EditableTextModes.View, text: '' }
+export default ({ placeholder }) => {
+  const initialState = { mode: EditableTextModes.View, text: placeholder ?? '' }
   const [state, stateTo] = useReducer(EditableReducer, initialState)
   return (
-    <>
+    <Editable>
       {state.mode === EditableTextModes.Edit && (
         <Input
           value={state.text}
@@ -65,9 +65,11 @@ export default () => {
       {state.mode === EditableTextModes.View && state.text}
       {state.mode === EditableTextModes.Saving && <Saving dispatch={stateTo} />}
       <Toggle mode={state.mode} dispatch={stateTo} />
-    </>
+    </Editable>
   )
 }
+
+const Editable = tw.span`inline-flex items-center`
 
 const Saving = props => {
   const { dispatch } = props
