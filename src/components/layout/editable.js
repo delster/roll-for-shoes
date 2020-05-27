@@ -116,4 +116,4 @@ const Toggle = props =>
     />
   )
 
-const Input = tw.input`mx-2 px-2 py-1 shadow-sm rounded-sm`
+const Input = tw.input`mr-2 px-2 py-1 shadow-sm rounded-sm`

@@ -3,7 +3,6 @@ import { useRecoilValue } from 'recoil'
 import tw from 'twin.macro'
 import { FaPlusCircle } from 'react-icons/fa'
 import CharacterSheet from '@components/character'
-import Card from '@layout/card'
 import CardHeading from '@layout/cardheading'
 import EditableText from '@layout/editable'
 import Rules from '@components/rules'
@@ -14,14 +13,19 @@ export default () => {
   const gameDesc = useRecoilValue(gameDescription)
   const [characters, setCharacters] = useState([])
 
-  const handleNewCharacter = name => {
+  const getDummyCharacter = name => {
     /* Using `created` as a unique ID until we decide on a backend. */
     const now = new Date().toJSON()
-    setCharacters([
-      ...characters,
-      { created: now, name, skills: [{ level: 1, name: 'Do Nothing', subskills: [] }] }
-    ])
+
+    return {
+      created: now,
+      name,
+      skills: [{ level: 1, name: 'Do Nothing', subSkills: [] }]
+    }
   }
+
+  const handleNewCharacter = name =>
+    setCharacters([...characters, getDummyCharacter(name)])
 
   return (
     <GameWrap>
@@ -29,7 +33,9 @@ export default () => {
         <GameTitle>
           <EditableText placeholder={gameTitle} />
         </GameTitle>
-        <GameSummary> {gameDesc} </GameSummary>
+        <GameSummary>
+          <EditableText placeholder={gameDesc} />
+        </GameSummary>
       </MetaCol>
       <RulesCol>
         <CardHeading>Rules of {gameTitle}</CardHeading>
